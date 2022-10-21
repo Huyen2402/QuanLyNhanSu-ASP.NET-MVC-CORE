@@ -21,7 +21,8 @@ namespace QuaMetMoi.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Employees.ToListAsync());
+            ViewBag.listEmploy = await _context.Employees.ToListAsync();
+              return View();
         }
 
         // GET: Employees/Details/5
@@ -116,6 +117,7 @@ namespace QuaMetMoi.Controllers
         }
 
         // GET: Employees/Delete/5
+        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Employees == null)
@@ -129,12 +131,13 @@ namespace QuaMetMoi.Controllers
             {
                 return NotFound();
             }
-
-            return View(employee);
+            _context.Employees.Remove(employee);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Employees");
         }
 
         // POST: Employees/Delete/5
-        [HttpPost, ActionName("Delete")]
+        
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

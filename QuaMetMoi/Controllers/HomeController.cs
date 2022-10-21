@@ -15,7 +15,7 @@ namespace QuaMetMoi.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(("~/Views/Employees/Index.cshtml"));
         }
 
         public IActionResult Privacy()
