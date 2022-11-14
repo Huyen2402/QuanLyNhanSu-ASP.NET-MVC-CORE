@@ -10,8 +10,8 @@
 }
 
 
- 
-    <table class="table">
+
+@*<table id="example"  style="width:100%">
         <thead>
             <tr>
             <th>
@@ -67,7 +67,89 @@
             i++;
         }
         </tbody>
-    </table>
+    </table>*@
+   
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                No
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                Thao tác
+            </th>
+          
+          
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+        }
+        @foreach (var item in listEmploy)
+        {
+
+            <tr>
+                <td>
+                    @i
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    
+                    <a data-bs-toggle="modal" data-bs-target="#myModal" class="delete" asp-action="Delete" data-id="@item.Id" asp-route-id="@item.Id"><i id="icon-delete" class="fa-solid fa-trash"></i></a>
+                   
+                </td>
+               
+            </tr>
+            i++;
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+           <th>
+                No
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                Thao tác
+            </th>
+        </tr>
+    </tfoot>
+</table>
 
 <!-- The Modal -->
 <div class="modal" id="myModal">
@@ -164,20 +246,38 @@
 </style>
       
 <script>
-    $(".delete").click(function(event){
-
-     var id = $(this).attr("data-id");
+    $(document).ready(function () {
        
-  
+        $('#example').DataTable({
+           
+        });
 
-        $("#name").click(function () {
-          
-            var url = "/Employees/Delete/" + id;
-    
-            window.location.href = url;
+       
+        $(".delete").click(function (event) {
+
+            var id = $(this).attr("data-id");
+
+
+
+            $("#name").click(function () {
+
+                var url = "/Employees/Delete/" + id;
+
+                window.location.href = url;
+                $.notify("Xoá liên hệ thành công", "success");
+            })
+           
+
         })
-        
-    })
+       
+       
+
+
+        })
+   
+    
+
+    
 
 
 

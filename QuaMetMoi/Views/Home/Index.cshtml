@@ -10,7 +10,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table id="example" class="display" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -81,6 +81,9 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    })
     $(".delete").click(function (event) {
 
         var id = $(this).attr("data-id");
