@@ -11,7 +11,7 @@
 
 
 
-@
+
    
 <table id="example" class="display" style="width:100%">
     <thead>
@@ -64,7 +64,7 @@
                 <td>
                     
                     <a data-bs-toggle="modal" data-bs-target="#myModal" class="delete" asp-action="Delete" data-id="@item.Id" asp-route-id="@item.Id"><i id="icon-delete" class="fa-solid fa-trash"></i></a>
-                   
+                    <a class="edit" asp-action="Edit" data-id="@item.Id" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
                 </td>
                
             </tr>
@@ -211,6 +211,23 @@
                 $.notify("Xoá liên hệ thành công", "success");
             })
            
+
+        })
+
+        $(".edit").click(function (event) {
+
+            var id = $(this).attr("data-id");
+
+            console.log(id)
+
+         
+
+                var url = "/Employees/Edit/" + id;
+
+                window.location.href = url;
+               
+         
+
 
         })
        

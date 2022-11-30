@@ -36,11 +36,17 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Index">Nhân Sự</a>
                                 </li>*@
+                                <li class="nav-item">
+                                    <a  id="LoginEmployess" asp-controller="Employees" asp-action="Login" type="button" class="btn btn-warning ">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Login</a>
+                                </li>
                                  <li class="nav-item">
                                     <a data-bs-toggle="modal" data-bs-target="#myModalAdd" id="addEmployess" asp-controller="Employees" asp-action="Create" type="button" class="btn btn-success ">
                                         <i class="fa-solid fa-plus"></i>
                                         Add New Employees</a>
                                 </li>
+
                             </ul>
                         </div>
                     </div>

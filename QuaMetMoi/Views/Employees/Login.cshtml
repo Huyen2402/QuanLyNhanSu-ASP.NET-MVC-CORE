@@ -1,0 +1,21 @@
+﻿
+@using ManageEmployees.Data;
+@model Employee;
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Login</h1>
+@using (Html.BeginForm("Login", "Employees", FormMethod.Post, new { @id = "form-dangnhap" }))
+{
+<label>Address</label>
+    <input name="Address" type="text" />
+
+<input type="submit" value="Đăng nhập" />
+}
+<p>@ViewBag.Address</p>
+
+
+

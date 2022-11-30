@@ -1,10 +1,19 @@
 using QuaMetMoi.Models;
 using Microsoft.EntityFrameworkCore;
+using ManageEmployees.Repositories;
+using QuaMetMoi.Interfaces;
+using QuaMetMoi.Repositories;
+using QuaMetMoi.UnitOfWork;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ManageEmployeesTestContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("dbconn")));
+
+builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
